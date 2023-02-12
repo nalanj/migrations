@@ -1,0 +1,2 @@
+# migrations
+Minimal migrations
