@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+if [ -z ${DATABASE_URL+x} ];
+then
+  echo "DATABASE_URL must be set";
+  exit 1;
+fi;
+
+if [ -z ${1+x} ] || [ ! -f $1 ];
+then
+  echo "Usage: migrate [script.sql]";
+  exit 1;  
+fi;
+
+psql $DATABASE_URL -1 -v ON_ERROR_STOP=1 -f $1;
+
